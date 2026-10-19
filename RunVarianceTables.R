@@ -25,7 +25,6 @@ variance_table_load <- function(case) {
   }
   if (identical(case, "ctg")) {
     df <- readxl::read_excel("datasets/CTG.xls", sheet = "Raw Data")
-    # Same row selection and predictors as the CTG experiment.
     df <- dplyr::filter(df, dplyr::if_any(dplyr::everything(), ~ !is.na(.)))
     df$class <- factor(ifelse(df$NSP == 3, 1, 0), levels = c(0, 1))
     vars <- c("LB", "AC", "FM", "UC", "DL", "DS", "DP", "ASTV",
@@ -139,7 +138,7 @@ variance_table_definitions <- function() {
   )
 }
 
-# Produce one row per method and predicted category; the CSV keeps full precision.
+# Produce one row per method and predicted category, the CSV keeps full precision.
 variance_table_extract <- function(case, result) {
   spec <- variance_table_definitions()[[case]]
   rows <- list()
@@ -227,7 +226,6 @@ variance_table_markdown <- function(rows) {
 }
 
 # Execute any requested cases, save RDS checkpoints, and generate tables.
-# Default: reuses existing checkpoint only when its seeds exactly match.
 run_variance_tables <- function(cases = variance_table_cases(), overwrite = FALSE,
                                 output_dir = "Results") {
   stopifnot(is.character(cases), length(cases) > 0L)
@@ -385,7 +383,7 @@ update_variance_analysis_md <- function(
   }
   if (!identical(image_references,
                  grep("!\\[[^]]*\\]\\(", lines, value = TRUE))) {
-    stop("Image references changed unexpectedly; output not written.")
+    stop("Image references changed unexpectedly, output not written.")
   }
   dir.create(dirname(output), recursive = TRUE, showWarnings = FALSE)
   writeLines(lines, output, useBytes = TRUE)

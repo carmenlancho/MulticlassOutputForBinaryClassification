@@ -422,9 +422,6 @@ Mean positive-class prevalence (%) and category size (%) across the external-tes
 Detailed plots and per-category summaries follow.
 
 
-En Pima solo mostramos TEST en el paper, no mostramos los resultados de
-train.
-
 ``` r
 df <- read.csv("../datasets/pima.csv")
 
@@ -817,7 +814,6 @@ E6_test_plot_pima <- barplot_CM_CI(CM, list_names_obs, list_names_pred, labels_t
 
 # Cardiotocography (CTG)
 
-<!-- BEGIN GENERATED VARIANCE TABLE: ctg -->
 ## External-test summary table
 
 Categories: Low risk, Monitoring, High risk.
@@ -830,14 +826,12 @@ Mean positive-class prevalence (%) and category size (%) across the external-tes
 | Optimal binning | 9/10 | [0.1, 11.8, 91.4] | [84.3, 7.6, 8.0] |
 | After-the-model, constrained | 10/10 | [0.13, 29.15, 99.51] | [84.9, 10.0, 5.1] |
 
-<!-- END GENERATED VARIANCE TABLE: ctg -->
 
 
 The constrained After-the-model configuration requires the Monitoring category to contain at least 10% of the training observations. The equal-frequency row describes the degenerate two-category outcome: it did not produce three non-empty categories in any repetition.
 
 # Phishing
 
-<!-- BEGIN GENERATED VARIANCE TABLE: phishing -->
 ## External-test summary table
 
 Categories: Low phishing risk, Suspicious, High phishing risk.
@@ -849,14 +843,12 @@ Mean positive-class prevalence (%) and category size (%) across the external-tes
 | Optimal binning | 10/10 | [4.9, 77.9, 100.0] | [47.7, 29.2, 23.0] |
 | After-the-model, minimum Suspicious | 10/10 | [4.4, 47.1, 97.7] | [47.2, 10.9, 41.9] |
 
-<!-- END GENERATED VARIANCE TABLE: phishing -->
 
 
 The constrained After-the-model configuration requires the Suspicious category to contain at least 10% of the training observations.
 
 # Credit Card Fraud
 
-<!-- BEGIN GENERATED VARIANCE TABLE: credit -->
 ## External-test summary table
 
 Categories: Low fraud risk, Suspicious, High fraud risk.
@@ -872,7 +864,6 @@ Mean fraud prevalence (%) and 95% confidence intervals for each category; catego
 | After-the-model, High-purity High | 0.036 [0.032, 0.039] | 63.8 [48.1, 79.6] | 95.9 [93.8, 98.0] | [99.85, 0.01, 0.14] |
 | After-the-model, Uncertainty | 0.025 [0.022, 0.029] | 48.3 [38.6, 58.1] | 97.9 [97.1, 98.7] | [99.79, 0.11, 0.10] |
 
-<!-- END GENERATED VARIANCE TABLE: credit -->
 
 
 Equal-frequency and optimal binning are not included in the table because neither produced the requested three non-empty categories in any of the 10 repetitions.
